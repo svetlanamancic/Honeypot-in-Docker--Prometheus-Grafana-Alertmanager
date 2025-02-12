@@ -1,7 +1,7 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: up stop ps logs
 up:
-	docker compose -f docker-compose.yml up -d $(c)
+	docker compose -f docker-compose.yml up --build -d $(c)
 stop:
 	docker compose -f docker-compose.yml stop $(c) 
 ps:

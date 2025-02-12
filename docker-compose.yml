@@ -20,6 +20,9 @@ services:
   ssh-honeypot:
     image: ssh-test
     container_name: ssh-honeypot
+    build: 
+      context: ./honeypot
+      dockerfile: Dockerfile
     ports: 
       - "22:22"
       - "8000:8000"
