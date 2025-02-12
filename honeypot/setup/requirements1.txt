@@ -1,0 +1,1 @@
+dpkg dialog rsyslog dpkg-dev apt-utils fakeroot

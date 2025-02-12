@@ -1,0 +1,24 @@
+{{ define "telegram.html.message" }}
+{{- $alertsLen := (len .Alerts) -}}
+{{ range .Alerts }}
+	🔥🔥🔥<strong>ALERTS FIRING!</strong>🔥🔥🔥
+	
+	{{- if eq .Labels.severity "critical"}}
+	Severity: <b>{{ .Labels.severity | toUpper }} 💥🚨🆘 </b>
+	{{- end }}
+	{{- if eq .Labels.severity "warning"}}
+	Severity: <b>{{ .Labels.severity | toUpper }} 📢‼️ </b>
+	{{- end }}
+	{{- if eq .Labels.severity "info"}}
+	<b>Severity: <b>{{ .Labels.severity | toUpper }} 🔔ℹ️🔔 </b>
+	{{- end }}
+	Alertname: {{ .Labels.alertname }}
+	{{- if .Annotations.description }}
+	Description: {{ .Annotations.description }}
+	{{- end }}
+	Job name: {{ .Labels.job }} 
+	IP address and port number: {{ .Labels.instance }}
+
+
+{{ end }}
+{{ end }}

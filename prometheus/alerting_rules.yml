@@ -1,0 +1,29 @@
+groups:
+  - name: alert_instance_down
+    rules:
+      - alert: Container_Down
+        expr: up == 0
+        for: 10s
+        labels:
+          severity: "critical"
+        annotations:
+          summary: Container stopped
+          description: "Container {{$labels.job}}, {{$labels.instance}} stopped."
+
+  - name: access_alert
+    rules:
+      - alert: Attempted_SSH_Access
+        expr: honeypot_failed_logins_total > 0
+        for: 10s
+        labels:
+          severity: "warning"
+        annotations:
+          description: "Attempted access to {{$labels.job}}, {{$labels.instance}} detected."
+
+      - alert: Honeypot_Compromised
+        expr: honeypot_successful_logins_total > 0
+        for: 10s
+        labels:
+          severity: "critical"
+        annotations:
+          description: "Login into {{$labels.job}}, {{$labels.instance}} detected."
