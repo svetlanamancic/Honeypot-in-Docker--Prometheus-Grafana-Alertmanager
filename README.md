@@ -36,7 +36,9 @@ Bot token is ommited in this repository. To receive alerts create and configure 
 
 To build and spin up containers navigate to the root folder containing `docker-compose.yml` file and execute:
 
-`make up`
+```bash
+> make up
+```
 
 Inside Docker `prometheus` runs on http://localhost:9090
 
